@@ -8,7 +8,6 @@ namespace Drupal\page_api_key\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Entity\EntityManager;
-use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
