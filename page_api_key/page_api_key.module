@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+
+function page_api_key_form_system_site_information_settings_alter(&$form, $form_state, $form_id)
+{
+    // Add API Key Configuration to Besic Settings Page
+    $siteapikey = \Drupal::config('siteapikey.configuration')->get('siteapikey');
+    $form['site_information']['siteapikey'] = [
+        '#type' => 'textfield',
+        '#title' => t('Site API Key'),
+        '#default_value' => $siteapikey,
+        '#description' => t('API to Access the Page Node Type in JSON Format'),
+		'#weight' => 3
+    ];
+
+    // Change form submit button text to 'Update Configuration'
+    $form['actions']['submit']['#value'] = t('Update configuration');
+
+    // Handle form submission
+    $form['#submit'][] = 'update_site_configuration_handler';
+}
+
+/**
+ * Site Configuration Submit Handlar.
+ *
+ * @see $form
+ * @see $form_state
+ */
+function update_site_configuration_handler($form, &$form_state)
+{
+    // Set Configuration Variable
+    $config = \Drupal::configFactory()->getEditable('siteapikey.configuration');
+    $api_key = $form_state->getValue(['siteapikey']);
+    $config->set('siteapikey', $api_key)->save();
+
+    // Status Message
+    drupal_set_message(t("Successfully Configured the API Key to ") . $api_key);
+}

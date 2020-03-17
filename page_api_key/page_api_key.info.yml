@@ -1,0 +1,6 @@
+name: Page API Key
+type: module
+description: 'Generate & Add Site API Key to Page Node Type.'
+package: Custom
+core: 8.x
+configure: system.site

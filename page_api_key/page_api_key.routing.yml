@@ -1,0 +1,6 @@
+page_api_key.content_detail:
+  path: '/page_json/{api_key}/{nid}'
+  defaults:
+    _controller: '\Drupal\page_api_key\Controller\PageApiKeyController::contentDetail'
+  requirements:
+    _permission: 'access content'
